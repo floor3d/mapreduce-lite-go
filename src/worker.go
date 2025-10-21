@@ -93,13 +93,6 @@ func grab_kvs(t *TaskResponse) map[string][]string {
 }
 
 // func Reduce(key string, values []string) string
-// Step 1: get all intermediate files and read them into memory
-// Step 2: create temp file for mr-out-X
-// Step 3: split by ",", convert to KeyValue, and sort with sort.Sort(ByKey(intermediate))
-// Step 4: for each distinct key, call Reduce, and write to temp file
-// Step 5: atomically change name of temp file to real phile
-// Step 6: call into TaskComplete
-// Step 7: Profit
 func Run_Reduce(t *TaskResponse, reducef func(string, []string) string) {
 	current_dir, _ := os.Getwd()
 	f, err := os.CreateTemp(current_dir, "tempout")
